@@ -162,7 +162,7 @@ export default function ContactPage() {
             <div key={i} className={`border-b border-[#e0d8ce] group ${openFaq === i ? "is-open" : ""}`}>
               <button 
                 className="w-full bg-transparent border-none py-[22px] flex justify-between items-center cursor-pointer font-body text-[15px] font-semibold text-[#1a3a2a] text-left transition-colors duration-200 gap-4 hover:text-[#2d6a4f]" 
-                onClick={() => setMenuOpen(false) /* placeholder untuk logic lain jika perlu */ || setOpenFaq(openFaq === i ? null : i)}
+                onClick={() => setOpenFaq(openFaq === i ? null : i)}
               >
                 {faq.q}
                 <span className={`w-[28px] h-[28px] rounded-full flex items-center justify-center text-white text-[18px] shrink-0 transition-all duration-300 leading-none ${openFaq === i ? "rotate-45 bg-[#7c4b1e]" : "bg-[#52b788]"}`}>
