@@ -175,20 +175,30 @@ export default function ProductsPage() {
       <WaFloat />
 
       {/* HERO */}
-      <div className="products-hero page-hero">
+      <div className="flex items-center pt-[100px] pb-[60px] px-[5%] md:px-[8%] min-h-[320px] bg-[linear-gradient(to_right,rgba(74,44,18,0.92)_40%,rgba(74,44,18,0.6)_100%),url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1600&q=80')] bg-center bg-cover">
         <div>
-          <div className="page-breadcrumb">Home <span>›</span> Products</div>
-          <h1>Our <em style={{ color: "var(--brown-light)" }}>Spices</em></h1>
-          <p>Premium Indonesian spices, export-ready, sourced from the finest regions.</p>
+          <div className="text-[12px] text-[#b7e4c7] tracking-[1px] uppercase mb-[14px]">
+            Home <span className="opacity-50 mx-2">›</span> Products
+          </div>
+          <h1 className="font-display text-[clamp(2.5rem,5vw,4rem)] text-white font-bold">
+            Our <em className="italic text-[#c68642]">Spices</em>
+          </h1>
+          <p className="text-white/70 text-[1rem] mt-3 max-w-[500px] leading-[1.7]">
+            Premium Indonesian spices, export-ready, sourced from the finest regions.
+          </p>
         </div>
       </div>
 
       {/* FILTER */}
-      <div className="products-filter">
+      <div className="px-[5%] md:px-[8%] py-[30px] flex gap-[10px] flex-wrap bg-white border-b border-[#e8e0d5]">
         {filters.map((f) => (
           <button
             key={f.key}
-            className={`filter-btn ${activeFilter === f.key ? "active" : ""}`}
+            className={`py-2 px-5 rounded-[20px] border-[1.5px] text-[12px] font-medium cursor-pointer transition-all duration-200 font-body ${
+              activeFilter === f.key
+                ? "border-[#2d6a4f] bg-[#2d6a4f] text-white"
+                : "border-[#e8e0d5] bg-white text-[#1a1a1a] hover:border-[#2d6a4f] hover:bg-[#2d6a4f] hover:text-white"
+            }`}
             onClick={() => setActiveFilter(f.key)}
           >
             {f.label}
@@ -197,38 +207,50 @@ export default function ProductsPage() {
       </div>
 
       {/* PRODUCT LIST */}
-      <div className="products-full">
+      <div className="py-[50px] px-[5%] md:px-[8%]">
         {filtered.map((p) => (
-          <div key={p.id} className="product-detail-card">
-            <div className="product-detail-img">
-              <img src={p.img} alt={p.name} loading="lazy" />
-              <span className="origin-tag">{p.origin}</span>
+          <div key={p.id} className="bg-white rounded-[20px] overflow-hidden shadow-[0_4px_30px_rgba(0,0,0,0.08)] mb-[32px] grid grid-cols-1 md:grid-cols-[360px_1fr]">
+            
+            <div className="relative overflow-hidden min-h-[250px] max-h-[280px] md:min-h-[320px] md:max-h-none">
+              <img src={p.img} alt={p.name} loading="lazy" className="w-full h-full object-cover block" />
+              <span className="absolute top-4 left-4 bg-[#1a3a2a] text-[#b7e4c7] text-[11px] py-[5px] px-[12px] rounded-[12px] tracking-[1px]">
+                {p.origin}
+              </span>
             </div>
-            <div className="product-detail-body">
-              <h2>{p.name}</h2>
-              <p className="product-subtitle">{p.subtitle}</p>
-              <p className="info-text">{p.info}</p>
-              <div className="spec-title">Specifications</div>
-              <div className="spec-grid">
+
+            <div className="p-[36px]">
+              <h2 className="font-display text-[2rem] text-[#1a3a2a] mb-1.5">{p.name}</h2>
+              <p className="text-[13px] text-[#8a8a8a] italic mb-4">{p.subtitle}</p>
+              <p className="text-[14px] leading-[1.75] text-[#4a4a4a] mb-6">{p.info}</p>
+              
+              <div className="text-[11px] tracking-[2px] uppercase text-[#2d6a4f] font-semibold mb-3">Specifications</div>
+              <div className="grid grid-cols-[repeat(auto-fill,minmax(160px,1fr))] gap-[10px] mb-6">
                 {p.specs.map((s) => (
-                  <div key={s.key} className="spec-item">
-                    <div className="spec-key">{s.key}</div>
-                    <div className="spec-val">{s.val}</div>
+                  <div key={s.key} className="bg-[#f9f5ef] rounded-[10px] py-3 px-3.5">
+                    <div className="text-[10px] text-[#8a8a8a] uppercase tracking-[1px] mb-[3px]">{s.key}</div>
+                    <div className="text-[13px] text-[#1a3a2a] font-medium">{s.val}</div>
                   </div>
                 ))}
               </div>
-              <div className="product-actions">
+
+              <div className="flex gap-3 flex-wrap">
                 <a
                   href={`https://wa.me/6282326929890?text=Hello%2C+I+am+interested+in+${p.wa}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn-wa"
+                  className="inline-flex items-center gap-2 bg-[#25D366] text-white py-3 px-6 rounded-[30px] text-[13px] font-semibold no-underline transition-all duration-200 border-none cursor-pointer font-body hover:bg-[#1ebe5b] hover:-translate-y-[1px]"
                 >
                   💬 Order via WhatsApp
                 </a>
-                <a href="/contact" className="btn-inquire">📩 Send Inquiry</a>
+                <a 
+                  href="/contact" 
+                  className="inline-flex items-center gap-2 border-[1.5px] border-[#2d6a4f] text-[#2d6a4f] py-3 px-6 rounded-[30px] text-[13px] font-semibold no-underline bg-transparent cursor-pointer font-body transition-all duration-200 hover:bg-[#2d6a4f] hover:text-white"
+                >
+                  📩 Send Inquiry
+                </a>
               </div>
             </div>
+
           </div>
         ))}
       </div>

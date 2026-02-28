@@ -42,24 +42,40 @@ export default function GalleryPage() {
       <Navbar />
       <WaFloat />
 
-      {/* HERO */}
-      <div className="gallery-hero page-hero">
+      {/* HERO SECTION */}
+      <div className="flex items-center pt-[100px] pb-[60px] px-[5%] md:px-[8%] min-h-[300px] bg-[linear-gradient(to_right,rgba(26,58,42,0.9)_0%,rgba(26,58,42,0.6)_100%),url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1600&q=80')] bg-center bg-cover">
         <div>
-          <div className="page-breadcrumb">Home <span>›</span> Gallery</div>
-          <h1>Our <em style={{ color: "var(--green-pale)" }}>Gallery</em></h1>
-          <p>A glimpse into our products, operations, and shipments.</p>
+          <div className="text-[12px] text-[#b7e4c7] tracking-[1px] uppercase mb-[14px]">
+            Home <span className="opacity-50 mx-2">›</span> Gallery
+          </div>
+          <h1 className="font-display text-[clamp(2.5rem,5vw,4rem)] text-white font-bold">
+            Our <em className="italic text-[#b7e4c7]">Gallery</em>
+          </h1>
+          <p className="text-white/70 text-[1rem] mt-3 max-w-[500px] leading-[1.7]">
+            A glimpse into our products, operations, and shipments.
+          </p>
         </div>
       </div>
 
-      <div className="gallery-section">
+      {/* GALLERY SECTION */}
+      <div className="py-[60px] px-[5%] md:px-[8%]">
         {categories.map((cat) => (
-          <div key={cat.title} className="gallery-category">
-            <h3>{cat.title}</h3>
-            <div className="gallery-grid">
+          <div key={cat.title} className="mb-[60px]">
+            <h3 className="font-display text-[1.8rem] text-[#1a3a2a] mb-5 pb-3 border-b-2 border-[#b7e4c7]">
+              {cat.title}
+            </h3>
+            <div className="grid grid-cols-[repeat(auto-fill,minmax(250px,1fr))] gap-[14px]">
               {cat.images.map((img) => (
-                <div key={img.src} className="gallery-img">
-                  <img src={img.src} alt={img.alt} loading="lazy" />
-                  <div className="gallery-overlay">🔍</div>
+                <div key={img.src} className="rounded-[12px] overflow-hidden aspect-[4/3] cursor-pointer relative group">
+                  <img 
+                    src={img.src} 
+                    alt={img.alt} 
+                    loading="lazy" 
+                    className="w-full h-full object-cover block transition-transform duration-500 group-hover:scale-[1.08]"
+                  />
+                  <div className="absolute inset-0 bg-[#1a3a2a]/40 opacity-0 transition-opacity duration-300 flex items-center justify-center text-white text-[24px] group-hover:opacity-100">
+                    🔍
+                  </div>
                 </div>
               ))}
             </div>

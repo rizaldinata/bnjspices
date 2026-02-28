@@ -1,7 +1,7 @@
 export default function WaFloat() {
   return (
     <a
-      className="wa-float"
+      className="fixed bottom-7 right-7 z-[999] bg-[#25D366] text-white w-[58px] h-[58px] rounded-full flex items-center justify-center no-underline shadow-[0_4px_20px_rgba(37,211,102,0.5)] animate-bounce-float transition-transform duration-200 hover:scale-110 hover:![animation-play-state:paused]"
       href="https://wa.me/6282326929890"
       target="_blank"
       rel="noopener noreferrer"
